@@ -1,0 +1,19 @@
+name: Matrix | reusable example
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'A username passed from the caller workflow'
+        default: 'user'
+        required: false
+        type: string
+
+jobs:
+  ReuseableMatrixJobForDeployment:
+    strategy:
+      matrix:
+        target: [dev, stage, prod]
+    uses: dsrinivasa/reusable-wf/.github/workflows/manual-trigger-job.yml@main
+    with:
+      username: ${{ matrix.target }}
