@@ -3,7 +3,7 @@ name: Reusable workflow intput output with permission
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
 on:
-  workflow_call: 
+  workflow_dispatch:
     inputs:
       username:
         required: true
