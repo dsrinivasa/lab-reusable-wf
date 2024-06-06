@@ -17,10 +17,10 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     outputs: 
-      un: ${{ steps.name.output.username}}
+      un: ${{ steps.name.outputs.user}}
     steps:
       - name: Print the input name to STDOUT
-        run: echo "username=Hell-${{ inputs.username }}" >> $GITHUB_OUTPUT
+        run: echo "user=Hell-${{ inputs.username }}" >> $GITHUB_OUTPUT
         shell: bash
 
   output-test:
