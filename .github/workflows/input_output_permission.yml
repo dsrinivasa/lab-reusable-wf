@@ -1,30 +1,20 @@
-name: Reusable workflow intput output with permission
+name: Call a reusable workflow and use its outputs
 
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-
-on:
-  workflow_dispatch:
-    inputs:
-      username:
-        required: true
-        type: string    
 
 permissions:
   contents: read
   pull-requests: write
 
-jobs:
-  Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    outputs: 
-      un: ${{ steps.name.outputs.user}}
-    steps:
-      - name: Print the input name to STDOUT
-        run: echo "user=Hell-${{ inputs.username }}" >> $GITHUB_OUTPUT
-        shell: bash
+on:
+  workflow_dispatch:
 
-  output-test:
-    needs: Explore-GitHub-Actions
-    uses: dsrinivasa/reusable-wf/.github/workflows/manual-trigger-job.yml@main
-    with:
-      username: "${{ needs.Explore-GitHub-Actions.outputs.un }}"
+jobs:
+  job1:
+    uses: dsrinivasa/reusable-wf/.github/workflows/input-output.yml@main
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
