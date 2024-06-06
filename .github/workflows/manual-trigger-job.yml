@@ -14,3 +14,5 @@ jobs:
     uses: dsrinivasa/reusable-wf/.github/workflows/on-push-job.yml@main
   github-reusable-wf-tag:
     uses: dsrinivasa/reusable-wf/.github/workflows/manual-trigger-job.yml@v1
+  github-reusable-wf-sha:
+    uses: dsrinivasa/reusable-wf/.github/workflows/manual-trigger-job.yml@5e658f8df9d3c32840631e990febe93cd5510613  
